@@ -17,11 +17,29 @@ const router = createBrowserRouter([
     element: withProviders(<MainLayout />),
     children: [
       { index: true, element: <Home /> },
-      { path: "skill/:id", element: <PrivateRoute><SkillDetails/></PrivateRoute> },
+
+      // ✅ Matches deployed URL: /skill/1
+      {
+        path: "skill/:id",
+        element: (
+          <PrivateRoute>
+            <SkillDetails />
+          </PrivateRoute>
+        ),
+      },
+
       { path: "login", element: <Login /> },
       { path: "signup", element: <Signup /> },
       { path: "forgot", element: <ForgotPassword /> },
-      { path: "profile", element: <PrivateRoute><Profile/></PrivateRoute> },
+
+      {
+        path: "profile",
+        element: (
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        ),
+      },
     ],
   },
 ]);

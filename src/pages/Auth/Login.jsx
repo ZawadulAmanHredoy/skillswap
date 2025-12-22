@@ -25,7 +25,7 @@ export default function Login(){
     }catch(err){
       toast.error(err.message);
     }finally{ setLoading(false); }
-  }
+  };
 
   const google = async ()=>{
     try{
@@ -33,27 +33,64 @@ export default function Login(){
       toast.success("Logged in with Google");
       navigate(from, { replace:true });
     }catch(err){ toast.error(err.message); }
-  }
+  };
 
   return (
-    <div className="max-w-md mx-auto p-6" data-aos="fade-up">
-      <h1 className="text-2xl font-bold mb-4">Login</h1>
-      <form onSubmit={submit} className="space-y-3">
-        <input name="email" value={email} onChange={e=>setEmail(e.target.value)} required type="email" placeholder="Email" className="input input-bordered w-full"/>
-        <div className="input-with-eye">
-          <input name="password" required type={show?"text":"password"} placeholder="Password" className="input input-bordered w-full"/>
-          <button type="button" className="btn btn-ghost btn-xs" onClick={()=>setShow(s=>!s)}>{show?"Hide":"Show"}</button>
+    <div className="section" data-aos="fade-up">
+      <div className="container-page">
+        <div className="max-w-md mx-auto surface p-6 sm:p-8">
+          <h1 className="text-3xl font-extrabold tracking-tight">Welcome back</h1>
+          <p className="mt-2 opacity-70">Login to continue swapping skills.</p>
+
+          <form onSubmit={submit} className="mt-6 space-y-3">
+            <input
+              name="email"
+              value={email}
+              onChange={e=>setEmail(e.target.value)}
+              required
+              type="email"
+              placeholder="Email"
+              className="input input-bordered w-full rounded-xl"
+            />
+
+            <div className="input-with-eye">
+              <input
+                name="password"
+                required
+                type={show?"text":"password"}
+                placeholder="Password"
+                className="input input-bordered w-full rounded-xl"
+              />
+              <button
+                type="button"
+                className="btn btn-ghost btn-xs rounded-lg"
+                onClick={()=>setShow(s=>!s)}
+              >
+                {show ? "Hide" : "Show"}
+              </button>
+            </div>
+
+            <button disabled={loading} className="btn btn-primary w-full rounded-xl">
+              {loading ? "Please wait…" : "Login"}
+            </button>
+          </form>
+
+          <div className="flex justify-between mt-3 text-sm">
+            <Link state={{prefill:email}} to="/forgot" className="link link-hover">
+              Forget Password?
+            </Link>
+            <Link to="/signup" className="link link-hover">
+              Create account
+            </Link>
+          </div>
+
+          <div className="divider my-6">OR</div>
+
+          <button className="btn w-full rounded-xl" onClick={google}>
+            Continue with Google
+          </button>
         </div>
-        <button disabled={loading} className="btn btn-primary w-full">{loading?"Please wait…":"Login"}</button>
-      </form>
-
-      <div className="flex justify-between mt-2 text-sm">
-        <Link state={{prefill:email}} to="/forgot" className="link">Forget Password?</Link>
-        <Link to="/signup" className="link">Create account</Link>
       </div>
-
-      <div className="divider">OR</div>
-      <button className="btn w-full" onClick={google}>Continue with Google</button>
     </div>
   );
 }

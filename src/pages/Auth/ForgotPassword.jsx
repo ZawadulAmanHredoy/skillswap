@@ -11,18 +11,32 @@ export default function ForgotPassword(){
     try{
       await sendPasswordResetEmail(auth, email);
       toast.success("Reset link sent. Redirecting to Gmail…");
-      // Simple redirect (examiner convenience)
       window.location.href = "https://mail.google.com/";
     }catch(err){ toast.error(err.message); }
-  }
+  };
 
   return (
-    <div className="max-w-md mx-auto p-6" data-aos="fade-up">
-      <h1 className="text-2xl font-bold mb-4">Reset Password</h1>
-      <form onSubmit={submit} className="space-y-3">
-        <input name="email" defaultValue={prefill} type="email" placeholder="Email" className="input input-bordered w-full"/>
-        <button className="btn btn-primary w-full">Send reset link</button>
-      </form>
+    <div className="section" data-aos="fade-up">
+      <div className="container-page">
+        <div className="max-w-md mx-auto surface p-6 sm:p-8">
+          <h1 className="text-3xl font-extrabold tracking-tight">Reset Password</h1>
+          <p className="mt-2 opacity-70">
+            Enter your email to receive a reset link.
+          </p>
+
+          <form onSubmit={submit} className="mt-6 space-y-3">
+            <input
+              name="email"
+              defaultValue={prefill}
+              type="email"
+              placeholder="Email"
+              className="input input-bordered w-full rounded-xl"
+              required
+            />
+            <button className="btn btn-primary w-full rounded-xl">Send reset link</button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 }
