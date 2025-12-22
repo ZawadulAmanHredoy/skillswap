@@ -1,0 +1,7 @@
+# Netlify configuration for Vite + React Router (SPA)
+# Ensures route reloads work without 404s.
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

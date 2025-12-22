@@ -1,0 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* AOS base */
+html, body { scroll-behavior:smooth; }

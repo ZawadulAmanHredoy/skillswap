@@ -1,0 +1,5 @@
+.input-with-eye { position:relative; }
+.input-with-eye input { padding-right:3rem; }
+.input-with-eye button {
+  position:absolute; right:.5rem; top:50%; transform:translateY(-50%);
+}
